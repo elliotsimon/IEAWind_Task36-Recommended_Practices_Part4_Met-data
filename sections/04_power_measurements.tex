@@ -1,0 +1,52 @@
+\chapter{Power Measurements {\color{magenta}{Contributing author: JB }}}
+
+%\\ \color{green} POST PUBLIC REVIEW VERSION\color{black}}
+\label{ch:performanceassessment}
+
+\noindent
+\begin{tcolorbox}
+\parbox{\textwidth}{
+\emph{\textbf{Key Points}
+\begin{itemize}
+    \item All performance evaluations of potential or currently used instrumentation
+    \item B...
+    \item C...
+    \item D...
+\end{itemize}
+}}
+\end{tcolorbox}
+
+
+
+
+
+\section{Live power and related measurements}
+\label{sec:power_scada}
+
+% Measurement location: wind turbine/solar panel, plant-level aggregation, connection point.
+
+Real-time measurements of power production from wind and solar farms are are a valuable input to very short-term forecasting systems, those with lead-times of minutes to hours ahead. Real-time power data has the potential to significantly increase the accuracy of very short-term forecasts compared to those based on Numerical Weather Prediction and historic power production data, and those which also incorporate real-time meteorological data. Power measurements have the advantage of being the quantity that is being forecast and therefore not subject to errors when converting wind speed to power, for example. However, power production is affected by non-weather effects, such as control actions from system operators, which should be considered by forecasters.
+
+Power production may be measured at multiple points between individual generators (individual wind turbines or PV panels) and the point of connection to the external electricity network. In the majority of cases, a the energy metered at the connection point is used in settlement of the electricity market and this is the quantity to be forecast. Accuracy standards for settlement meters are generally high, and live data are typically available to at least the relevant transmission/distribution system operator. Power from individual generators or other points in a wind or solar park's internal network will be subject to losses before reaching the settlement meter, therefore, it is imperative that real-time power data corresponds to the correct quantity of interest.
+
+Temporal resolution is also a factor. Different users may be concerned with power/energy production on different time scales. Market participants' primary concern is energy in a given settlement period, which differ in length between countries/regions, and between financial products for energy and other services, such as reserve products. Settlement periods with 5, 15, 30, 60, 240 minute duration are common. System operators, on the other hand, may be more concerned with instantaneous power for balancing purposes, though in forecasting practice this may be approximated by averaging over a short time period or smoothing. Real-time data should be collected at the same or higher resolution than the user requires. Higher resolution data also enables more frequent updates to forecasts as new data becomes available more frequently.
+
+
+Measurements: active power, turbine/panel operational or not, maximum export/capacity, turbine/panel/plant controller set-point, power available/available active power
+
+
+\section{Power available signals}
+\label{sec:power_available}
+
+
+
+
+
+\section{Live power data in forecasting for power system operation} 
+\label{sec:liva-data-so}
+
+
+
+
+\section{Live power data in forecasting for power plant operation}
+\label{sec:live-data-po}

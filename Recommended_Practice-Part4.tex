@@ -1,0 +1,100 @@
+%  A simple AAU report template.
+%  2015-05-08 v. 1.2.0
+%  Copyright 2010-2015 by Jesper Kjær Nielsen <jkn@es.aau.dk>
+%
+%  This is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
+%
+\input{setup/preamble.tex}% package inclusion and set up of the document
+\input{setup/hyphenations.tex}% 
+\input{setup/macros.tex}% my new macros
+
+% TIMELINE
+% Milestone 1:  30.03 11.30 UTC (TOC)
+% Milestone 2:  30.04./02.05 (First Draft)
+% Milestone 3:  31.05 /01.06 (Review and finalization of work)
+% Milestone 4:  14.06 (sending draft for Review to IEA Wind Community)
+% Milestone 5:  31.07 - 15.08 (implementing feedback and final review)
+% Milestone 6:  20.08.2019 Submission to IEA Task 11 OA  and IEA Wind secretary
+% Milestone 7:  xx.10.2021 Acceptance for Publication by Task11 with minor changes
+% Milestone 8:  31.12.2021 Submission of final version at IEA and OAbook
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% FINAL CORRECTED VERSION                       %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\noindent
+
+%frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{setup/frontpage.tex}
+\input{setup/colophon.tex}
+\cleardoublepage
+\pdfbookmark[0]{Contents}{label:contents}
+\pagestyle{fancy} %enable headers and footers again
+\tableofcontents
+%%%% REMEMBER TO REMOVE BEFORE PUBLICATION %%%%%%%
+%\listoftodos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{setup//preface.tex}
+{\color{blue}{
+\textbf{WORKING COMMENTS}\\
+
+Please put your abbreviation to the headlines where you find a
+{\color{magenta}{Contributing author: }}
+
+Where you suggest to add a section, PLEASE add the text {\color{magenta}{Contributing author: }} to the section heading\\
+
+
+Abbreviations:\\
+COM: Corinna M{\"o}hrlen
+JY: Jie Yan
+JB: Jethro Browell
+ES: Elliot Simon
+
+
+
+}}
+
+\cleardoublepage
+%mainmatter
+\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+
+
+
+
+
+\input{sections/01_introduction.tex}
+\input{sections/02_instrumentation.tex}
+\input{sections/03_measurements.tex}
+\input{sections/04_power_measurements}
+\input{sections/05_performance_assessment.tex}
+\input{sections/06_best_practice.tex}
+
+\newpage
+%\printbibliography[heading=bibintoc]
+%\label{bib/mybib}
+%\input{bib/iearppart3.bib}
+%\input{bib/biblio.tex}
+
+%\printbibliography[heading=bibintoc]
+%\section*{References}
+%%\bibliographystyle{plain}
+%\bibliography{bib/mybib}
+\input{bib/references}
+%\bibliography{bib/references}
+
+\appendix
+\input{sections/appendixA.tex}
+\end{document}

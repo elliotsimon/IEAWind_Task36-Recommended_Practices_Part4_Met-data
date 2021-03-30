@@ -1,0 +1,122 @@
+\chapter{Evaluation of Operational Forecasts}\label{ch:eval_of_oper}
+
+%% How to use this document...
+% Here is chapter 2. If you want to leearn \todo{I think this word is mispelled} more about \LaTeXe{}, have a look at \cite{Madsen2010}, \cite{Oetiker2010} and \cite{Mittelbach2005}.
+% \missingfigure{We need a figure right here!}
+
+Systematic evaluation of operational forecasts is an important business function for forecast users. As well as monitoring the quality of the forecasts produced in-house and procured from vendors, regular evaluation supports continuous improvement in forecast performance and end-use. This chapter provides a guide to best practice in evaluation of operational forecasts. It begins by reviewing common motivations for continuous and periodic evaluation of operational forecasts, and then discussed different evaluation paradigms for specific use-cases.
+
+\section{Motivation} 
+%moved to 05_best_practice \section{Operational Forecast Value Maximization}
+
+Organizations evaluate operational forecasts for a variety of reasons and on a wide range of scales, from individual wind farms to entire fleets, and from short lead times to horizons spanning several days. Below, some of the main motivating factors for evaluating operational forecasts and their implications for for evaluation methodology are discussed.
+
+\subsection{Performance Monitoring}
+%moved to 05_best_practice \section{Operational Forecast Value Maximization}
+
+Continuous monitoring of forecast performance is best practice in order to develop an understanding of forecast capability and to identify and respond to issues with raw forecast data or its processing. While failure of forecasting systems is extremely rare, weather models, IT systems, and the forecast target (e.g. individual wind farm, portfolio of wind farms, national wind output) are constantly evolving potentially introducing new and unforeseen sources of error.
+
+While error metrics or contingency tables calculated over short periods do not give reliable measure of overall performance they can provide an indication of any problems with a forecasting system and large errors should be logged and investigated. Abrupt changes in forecast performance can result from errors in data processing, such as incorrect availability information during maintenance. Changes in performance over long time scales may be a result of changes to a suppliers numerical weather model(s) or changes in the behaviour of wind power plant as they age, for example. Slow changes may me more difficult to detect but over time can accumulate significant biases which should also be investigated. It is often necessary to dis-aggregate forecast metrics to identify some sources of error. Important factors to consider dis-aggregating errors by include lead-time, time of day, power level and weather type.
+
+Regular reporting and tracking of forecast performance over relevant periods can help foster understanding of forecast capability across business functions and support staff and process development.
+
+\begin{itemize}
+    \item Forecasts performance should be monitored continuously to quickly identify technical problems
+    \item Large errors should be investigated and recorded for future analysis
+    \item Error metrics should be dis-aggregated by appropriate factors, e.g. lead-time, power level
+    \item Regular reporting for error metrics supports forecast users interpretation of forecast information
+\end{itemize}
+
+\subsection{Continuous improvement}
+
+Forecast evaluation is the first stage in identifying areas for potential improvement in forecasting systems. Periodically evaluating operational forecast performance and its impact on wider business functions can be a valuable exercise. For example, changes in the way forecasts are used, or the importance of different lead-times or variables may be cause to change the way forecasts are produced or communicated internally. Alternatively, it could be cause to engage with external providers.
+
+In situations where multiple operational forecasts are produced or supplied, regular benchmarking can add value as different services are upgraded over time or exhibit different performance characteristics.
+
+\begin{itemize}
+    \item Evaluation underpins forecast improvement and insights should be shared with both forecasters and end-users
+    \item Evaluation and improvement should be informed by end-use and business value
+\end{itemize}
+
+\subsection{Contractual incentives and and regulation}
+%moved to 05_best_practices \ref{sec:incentivization}
+
+Operational forecasts may be tied to an incentive scheme by which monies are exchanged based on forecast performance. Examples of such arrangements exist in both commercial forecast services and regulation of monopoly businesses. As the terms of the incentive scheme typically include details of how forecasts evaluated, performing this evaluation poses few risks. However, the evaluation methodology should be carefully considered when negotiating or subscribing to such incentive schemes.
+
+Incentives may take the form of a linear relationship between reward/penalty and a forecast metric such as Mean Absolute Error, which may be normalized to installed capacity, and capped at some minimum/maximum reward/penalty. Similarly, incentives may be based on an event-based metric, accuracy or hit-rate for example, for specific events such as ramps or within-day minimum/maximum generation. The time period over which such an incentive is calculated and settled will have a large impact on it's volatility as evaluation metrics may vary greatly on short time scales. Longer timescales are conducive to a stable incentive reflective of actual forecast performance rather than variations in weather conditions.
+
+%Another option is an event based incentive, such as a penalty/reward based on the largest forecast error for with-in day max/min values. Penalizing large errors promotes conservative forecasts as large errors are more likely if extreme events are predicted but do not occur, or occur at a different time. This may not reflect the true value of the forecast as an indication that an extreme event is possible, even if the timing is not exact incorrect, can be very valuable. Another event based metric is counts of over-/under-forecasts during some period. However, metrics based on count data are not recommended as towards the end of an incentive period the forester has a good idea of their performance and may be incentivised to deliberately bias their forecast in order to improve their count-based score.
+
+\begin{itemize}
+    \item Evaluation is necessary to enforce incentive schemes and/or ensure compliance with regulation
+    \item Care must be taken to design incentives and regulation that encourage the desired behaviour of a forecast system
+\end{itemize}
+
+\subsection{Accountability}
+%moved to 04_performance_assessment \ref{subsec:accountability}}
+
+Wind power forecasting is only one link in the process of taking wind power to market or operating power systems. If operational decisions are analyzed after-the-fact to understand why particular decisions were made, the forecasts available to the decision-makers may be scrutinized. Evaluation of operational forecast performance should be available to contextualize decisions made on the basis of any single forecast. Similarly, any forecasts provided by a third party should be stored and evaluated both before and after any post-processing is applied in order to trace-back forecast errors if necessary.
+
+\begin{itemize}
+    \item Forecasts, outcomes, and evaluation data should be stored to help establish accountability
+\end{itemize}
+
+Wind power forecasting is only one link in the process of taking wind power to market or operating power systems. If operational decisions are analyzed after-the-fact to understand why particular decisions were made, the forecasts available to the decision-makers may be scrutinized. Evaluation of operational forecast performance should be available to contextualize decisions made on the basis of any single forecast. Similarly, any forecasts provided by a third party should be stored and evaluated both before and after any post-processing is applied in order to trace-back forecast errors if necessary.
+
+\begin{itemize}
+    \item Forecasts, outcomes, and evaluation data should be stored to help establish accountability
+\end{itemize}
+
+
+
+\section{Evaluation Paradigm and Metric Selection}
+
+Operational forecasts should be evaluated in the context of their end-use. Different use cases will have different cost functions, some of which may be complex or impossible to define. Simple evaluation metrics such as Mean Absolute Error or Root Mean Squared Error can be used to provide an indication of forecast performance for decisions with (symmetric) linear or quadratic loss functions, respectively. However, in most cases the true cost of wind power forecast errors will be more complex and depend on externalities, such as forecasts and out-turns of energy prices.
+
+In the remainder of this section a range of common use cases and recommended practice for evaluation of operational forecasts are presented. 
+
+\subsection{Energy Trading and Balancing}
+%
+In energy trading forecasts of multiple variables are used in order to both provide situational awareness and to support quantitative decision making. Costs accrue on the basis of multiple forecasts and prices, for example forecasts used at the day-ahead stage and then intra-day for the same trading period, and the relative price of buying and selling energy at different times. Furthermore, prices, particularly imbalance prices, may be influenced by the cumulative forecasts and forecast errors of all market participants creating dependency between wind power forecasts and the cost of forecast errors. Similarly, unrelated events may cause large price movements that result in an otherwise unremarkable forecast error having a large financial impact. Therefore, care must be taken when designing an evaluation scheme that it is reflective of forecast performance and not externalities.
+
+% Use of probabilistic forecasts
+
+% Using imbalance prices to calculate the `economic value' of forecast performance?
+
+
+
+\subsection{Power Ramps}
+
+% Many users care more about amplitude than phase.
+
+Power ramps can have significant impact on power system and electricity market operation and are of interest to decision-makers in both domains. However, as ramps comprise a sequence of two or more forecasts, metrics that only compare predictions and observations at single time points are not suitable for evaluating ramp forecasts. Event-based evaluation in the form of contingency tables and associated metrics provide a tool-set for evaluating these forecasts.
+
+Once an event is defined, such as ramp defined as a particular change in wind energy production over a particular time period, occurrences in forecasts and observations can be labeled and a table of true-positive, false-positive, true-negative and false-negative forecasts can be produced. From this, the skill of the forecast at predicting such events can be evaluated. 
+
+The definition of a ramp will influence the forecast tuning and evaluation results. It is important therefore that the definition reflects the decision(s) being influenced by the forecast. For example, this could be related to a product commercial ramp product definition, or the ramp rates of thermal power plant used in balancing. Furthermore, if an economic cost can be assigned to each outcome then the the forecasting system can be tuned to minimize cost, and the relative value of different forecasting systems can be compared. % For example, if the cost of not forecasting a ramp and then one occurring (false-negative) is significantly higher than the cost of preparing for a ramp which does not occur (false-positive)...
+
+\begin{itemize}
+    \item Contingency tables and statistics derived from them provide a framework for evaluating ramp forecasts
+    \item Ramp definitions should reflect operational decision-making
+    \item The cost implications of different types of error should be considered when comparing different forecasting systems
+\end{itemize}
+
+
+\subsection{Reserve}
+
+\subsection{Forecast Diagnostics and Improvement}
+
+\color{red}Thoughts on this section:
+One of the issues that is often experinced, especially if it is about improvement of hours-head forecasts over persistence is that 
+
+---> the persistence has a benefit, if measurements are e.g. constant: Then the persistence scores perfect, while the forecast provides a realistic view of the situation. 
+
+In a scoring system, the forecast however does often beat persistence significantly later than in reality, because the end-user do not filter ``bad'' data out. The same can happen when the evaluation is made with measurement data that is post-processed, which often is the case at system operators that have departments that ``clean bad data'' retrospectively, because they are used to pay producers. If the forecaster does not have the clean data in real-time, the results are often misleading. 
+
+I would therefore like to see a recommendation in the case of improvement evaluation strategies that measurement data needs to be consistent with what the forecaster had at the time and cleaned for non-trustworthy data in the case of persistence.
+\color{black}
+
+% \section{Useful Metrics for Different Forecast Horizons}
+
+
+% \section{Comparing Multiple Forecast Solutions}
