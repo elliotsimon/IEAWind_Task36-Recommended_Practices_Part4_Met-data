@@ -1,0 +1,163 @@
+
+TEMPLATES 
+
+\section{Examples}
+You can also have examples in your document such as in example~\ref{ex:simple_example}.
+\begin{example}{An Example of an Example}
+  \label{ex:simple_example}
+  Here is an example with some math
+  \begin{equation}
+    0 = \exp(i\pi)+1\ .
+  \end{equation}
+  You can adjust the colour and the line width in the {\tt macros.tex} file.
+\end{example}
+
+
+\paragraph{A Paragraph}
+You can also use paragraph titles which look like this.
+
+\subparagraph{A Subparagraph} Moreover, you can also use subparagraph titles which look like this\todo{Is it possible to add a subsubparagraph?}. They have a small indentation as opposed to the paragraph titles.
+
+\todo[inline,color=green]{Should we go for this ???}
+
+%%%% colorbox %%%%
+\noindent
+\begin{tcolorbox}
+    \parbox{\textwidth}{
+    \emph{\textbf{Recommendation:}   }}
+\end{tcolorbox}
+
+\noindent
+\begin{tcolorbox}
+\parbox{\textwidth}{
+\emph{\textbf{Key Points}
+\begin{itemize}
+    
+\end{itemize}
+}}
+\end{tcolorbox}
+
+%%%%% Figure %%%%%%%%%%%%%%
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{figures/NAME.png}
+    \caption{}
+    \label{fig:decisionsupporttool}
+\end{figure}
+
+
+
+%%%%% tables %%%%%%%%%%%%%%
+\begin{table}[]
+    \caption{TEXT}
+    \centering
+    \begin{tabular}{c|c|c}
+     heading & heading & heading \\ \hline 
+       & & \\
+       & & \\
+    \end{tabular}
+    \label{tab:initial_considerations}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+TABLE WITH COLUMN SPANNING MULTIPLE LINES
+%https://tex.stackexchange.com/questions/26462/make-a-table-span-multiple-pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[h]
+    \caption{Interpretive and critical research paradigms for design research (adopted from \ldots%\citealt{crouch2012doing}
+    )}
+    \label{crouch}
+    \begin{tabular}{  l  p{3.4cm}  p{3.4cm} }
+        \toprule
+\textbf{Research Paradigm}      
+& \textbf{Interpretive}   
+& \textbf{Critical} \\\midrule
+Epistemology / Ontology 
+& It is only possible to represent aspects of social reality. Researcher is a subjective observer. The world is open to interpretation.        
+& The world is characterised by inequalities because the lifeworld is systemically colonised. Ideology is all-pervasive. Knowledge implies action. \\\hline
+
+Researcher’s role       
+& Engage with other people’s lives Enable the ‘voices’ of others to be heard
+& Critically observe design practices Engage with other people’s lives, nitiate or facilitate change  \\\hline
+
+Research purpose        
+& To explore the habitus of designers and users, in,interaction with the field To interpret design practices, objects and systems To understand how the designer or the user engages with design practices, objects and systems 
+& To disrupt, emancipate, transform the habitus and field of design To explore how the user is affected by design practices, objects and systems To change design practices, \\\hline
+
+objects and systems 
+& Underlying values       
+& Plurality \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+LONGTABLE - SPANNING OVER MULTIPLE PAGES
+https://tex.stackexchange.com/questions/26462/make-a-table-span-multiple-pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{longtable}
+
+%%%% LONGTABLE with 2 columns 
+\begin{longtable}{| p{.20\textwidth} | p{.80\textwidth} |}
+\caption{Your caption here} % needs to go inside longtable environment
+\hline
+ \hline
+ \textbf{A} & \textbf{B} \\ \hline
+ \endfirsthead
+ \textbf{A} & \textbf{B} \\ \hline
+ \endhead
+foo & bar \\ \hline 
+foo & bar \\ \hline
+foo & bar \\ \hline
+\caption{Your caption here} % needs to go inside longtable environment
+\label{tab:myfirstlongtable}
+\end{longtable}
+Table \ref{tab:myfirstlongtable} shows my first longtable.
+
+
+%%% LONGTABLE 3 columns %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{longtable}{  p{.20\textwidth}  p{.30\textwidth}  p{.40\textwidth} }
+ \caption{ Recommendations for initial considerations prior to forecast solution selection for typical end-user scenarios}\\
+ \hline
+ \textbf{A} & \textbf{B} & \textbf{C} \\ \hline
+ \endfirsthead
+ \textbf{A} & \textbf{B} & \textbf{C} \\ \hline
+ \endhead
+foo & bar & hoo \\ \hline
+foo & bar & hoo \\ \hline
+  \label{tab:initial_considerations}
+\end{longtable}
+
+%%%%%%%%%%%STRIKEOUR TEXT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sout{Thios text will be striked out...}
+==> %belongs to  \usepackage[normalem]{ulem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Lists without large line spaces:
+\begin{itemize}
+        \vspace{-0.2cm}\item First Line
+        \vspace{-0.4cm}\item Second Line 
+    \end{itemize}
+
+
+\textbf{Needs package \\usepackage{enumitem} --- with tendency to crash!!!}
+\setlist{nolistsep}
+\begin{itemize}[noitemsep]
+    \item a
+    \item b
+    \item c
+\end{itemize}
+
+\setlist{nolistsep}
+\begin{enumerate}[noitemsep]
+    \item a
+    \item b
+    \item c
+\end{enumerate}
+
+% NO indents at paragraph start 
+%%%% set \noindent at start of line... quick fix
+%\setlength{\parindent}{0pt}  % quickfix
+%\usepackage{parskip} % OVERALL FIX  (http://ctan.org/pkg/parskip )

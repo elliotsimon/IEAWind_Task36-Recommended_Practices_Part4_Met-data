@@ -1,0 +1,127 @@
+\chapter{Power Measurements for real-time operation }\label{ch:power_measurements}
+{\color{magenta}{Contributing author: JB, RP? }}
+%\\ \color{green} POST PUBLIC REVIEW VERSION\color{black}}
+\label{ch:performanceassessment}
+
+\noindent
+\begin{tcolorbox}
+\parbox{\textwidth}{
+\emph{\textbf{Key Points}
+\begin{itemize}
+    \item Live power and energy data are a valuable input to very short-term forecasting systems, especially those with frequent updates and high temporal granularity
+    \item Additional operational data such as Power Available signals, plant set-points, and availability are critical for robust forecasting and forecast evaluation
+    \item The specification of power and energy metering should be factored into forecasting systems
+\end{itemize}
+}}
+\end{tcolorbox}
+
+
+
+
+\section{Live power and related measurements}
+\label{sec:power_scada}
+
+% Measurement location: wind turbine/solar panel, plant-level aggregation, connection point.
+
+Real-time measurements of power production from wind and solar farms are are a valuable input to very short-term forecasting systems, those with lead-times of minutes to hours ahead. This and related data can also assist monitoring of plant availability which is important for operational forecasting. Real-time power data has the potential to significantly increase the accuracy of very short-term forecasts compared to those based on Numerical Weather Prediction and/or those which incorporate real-time meteorological data. Power measurements have the advantage of being the quantity that is being forecast and therefore not subject to errors when converting wind speed to power, for example. However, power production is affected by non-weather effects, such as control actions from system operators, which should be considered by forecasters.
+
+Power production may be measured at multiple points between individual generators (individual wind turbines or PV panels) and the point of connection to the electricity network. In the majority of cases, the energy metered at the connection point and used in settlement of the electricity market is the quantity to be forecast. Accuracy standards for settlement meters are generally high, and live data are typically available to at least the plant and relevant electricity system operator. Power from individual generators or other points in a wind or solar park's internal network will be subject to losses so will not match the settlement meter. This data may however be utilised to improve forecasts.
+
+Temporal resolution is an important factor when considering the use of live data in forecasting systems. Different users may be concerned with power/energy production on different time scales. Market participants' primary concern is energy in a given settlement period, which differ in length between countries/regions, and between financial products for energy and other services, such as reserve products. Settlement periods with 5, 15, 30, 60, 240 minute duration are common. System operators, on the other hand, may be more concerned with instantaneous power for balancing purposes, though in forecasting practice this may be approximated by averaging over a short time period or smoothing. Real-time data should be collected at the same or higher resolution than the user requires. Higher resolution data also enables more frequent updates to forecasts as new data becomes available more frequently.
+
+A list of common measurements and their potential uses in forecasting systems is provided in Table~\ref{tab:power_variables}. In general, they are collected by the plant's Supervisory Control and Data Acquisition (SCADA) system, or by dedicated metering/monitoring devices that communicate with the electricity system and/or market operator.
+
+\begin{table}[]
+    \centering
+    \caption{List of power-related quantities measured at wind (W) and solar (S) plants that have a role in forecasting and examples of how they may be used.}
+    \begin{tabular}{|p{3cm}|c|p{4cm}|p{6.5cm}|} \hline
+         Quantity & W/S & Location & Use \\ \hline
+         Active Power & W\&S & SCADA or Connection Point & Input/feature in very short-term forecasting models, indicator of plant availability if combined with meteorological measurements \\
+         Controller Set-point & W\&S & SCADA & Flagging curtailment and other control actions \\
+         Capacity in operation & W\&S & SCADA & Scaling forecast based on available capacity \\
+         Voltage & W\&S & SCADA or Connection Point & Flagging plant unavailability \\
+         Status of breakers & W\&S & & Flagging plant unavailability \\
+         Temperature & W\&S & Plant & Forecast input: PV efficiency, snow, icing \\
+         Wind Speed & W & Turbine SCADA or Met Mast & Forecast input and quality control \\
+         Wind Direction & W & Turbine SCADA or Met Mast & Forecast input and quality control \\
+         Horizontal direct solar radiation & S & Plant & Forecast input and quality control \\
+         Panel Tilt & S & Plant & Forecast input and quality control \\
+         Sky images & S & Plant & Forecast input \\\hline
+    \end{tabular}
+    \label{tab:power_variables}
+\end{table}
+
+
+% {\color{magenta}{Measurements: active power, turbine/panel operational or not, maximum export/capacity, turbine/panel/plant controller set-point, power available/available active power. Net-load of PV/demand, larger PV require separate meters in some cases. Hilight challenges for embedded wind and solar without live data (and size threshold depends on system).}}
+
+% {\color{blue}{Question: what is our aim with this section ? \\ My understanding is that there are grid codes and well defined ways of collecting data at TSO level. Is our aim to make suggestions to: (1)  TSOs on what may be missing or what is crucial from a forecasting perspective ? \\ (2) BRP to assist them in requesting specific power data from wind/solar famrs for the marketing and balancing ?}}
+% {\color{magenta}{Yes, exactly.}}
+
+\section{Power available signals}
+\label{sec:power_available}
+
+Power Available (PA) signals provide an estimate of the potential power that could be produced by a wind or solar plant if not constrained in any way. Constraints are typically reduced controller set-points issued by the plant or electricity system operator. PA is equal to active power under normal operation, or the power that could be produced if any constraints were lifted. Wind and solar plant typically produce PA signals internally for control purposes, and in some jurisdictions these are shared with electricity system operators.
+
+Wind and solar power forecasts are typically configured to forecast the power that would be produced in the absence of constraints, which therefore corresponds to PA signals when such actions are in place. Furthermore, forecasts that take live power as an input should switch to taking PA as an input during constraints, or at least flag power data as corrupt during these periods.
+
+\section{Measurement systems}
+
+\subsection{Connection-point Meters}
+
+The interface between a power plant and the electricity system, the so-called connection-point, is typically metered to a high degree of precision and used in electricity market settlement and provide a live feed to plant and system operators. The minimum precision of such measurements is usually dictated by network codes in a given region. For example, international standard IEC 62053-21 and IEC 62053-23 describe classes of active and reactive power meters, respectively. These standards are references in the Great Britain Balancing and Settlement Code, for example, where active power meter errors are required to be less than 1.5\% under normal conditions, or 2.5\% if the power factor is beyond 0.5 lag or 0.8 lead, or active power is below 20\% or rated import/export. It should be noted that these measurements may not match those recorded by plant plant SCADA systems (the topic of the next section) due to differences in equipment or location of measurement devices relative to the grid connection-point transformers and other electrical equipment.
+
+Live power data is often streamed to plant and system operators and  available to control room engineers and their support systems and is often visualised along side forecasts to track out-turn relative to forecasts continuously. Live data is also a key input to very short-term forecasting systems with high temporal granularity, which is discussed in Section~\ref{sec:liva-data-so}. 
+
+Energy is metered according to the duration of market settlement periods, which typically range from 5 to 60 minutes. As the volume of energy used in market settlement, predicting the volume of energy measured by these meters is the objective of the majority of forecasting systems, especially those used by market participants.
+
+\subsection{Wind Power SCADA Systems }\label{subsec:scadasolar}
+{\color{magenta}{Contributing author: JB}}{\color{blue}{ -- needs attention - more authors ? COM: 23.08.2021 still valid ?}}
+
+Wind turbines routinely measure operational variables for their control and operation. Several of these are valuable in forecasting, particularly on the very short-term horizons if provided in close to real-time to forecasting systems. These are listed in Table~\ref{tab:power_varia}. However, it is important to note the limitations of these, in particular of the nacelle mounted anemometer and wind vane, which are impacted by the up-wind rotor, see Section~{\color{magenta}{cross-ref}} for more details. The sampling frequency if also significant. Typically 10-minute mean values are stored and communicated to control control centres, but higher resolution may be of value, particularly if maximising forecast accuracy on lead-times of 10-minutes or less is a high priority. Live feed of instantaneous active power can be valuable in very short-term forecasting, though it is important to treat both instantaneous power and power averaged over different time periods as distinct.
+
+
+\subsection{Solar Power SCADA Systems {\color{magenta}{Contributing author: ?}}}\label{subsec:scadawind}
+
+{\color{magenta}{JB has reached out to members of IEA PVPS 16 and Justin Sharp for input. Rui also offered to speak to contact and contribute here.}}
+% John Z can contact Amber from CASIO with specific questions once we have a draft.
+
+\subsection{Emerging technologies {\color{magenta}{Contributing author: ?}}}\label{subsec:scadawind}
+
+The rapid evolution of energy systems requires forecasting systems to evolve with them. Some emerging issues are briefly discussed here.
+
+Embedded wind and solar, that which is connected `behind the meter' is observed negative demand in many electricity systems. This poses a challenge as both the installed capacity, location, and power output of these generators may be unknown. Various actors be require forecasts of net-load with gross load and embedded generation disaggregated. In this case, a combination of net-load metering, meteorological observations, and wind and solar production data all add value to forecasting systems. Where the installed capacity is uncertain, satellite imagery may be employed to identify the size and location of wind turbines and solar panels.
+
+
+% Suggested content:
+% \begin{itemize}
+%     \item Net-load metering and forecasting
+%     \item Capacity estimation: net-load data, satellite images
+%     \item Real-time monitoring: satellite data (radiation and wind), networks of measurement devices, partial metering and up-scaling
+%     \item ???
+% \end{itemize}
+
+
+
+\section{Live power data in forecasting}
+ \label{sec:live-data}
+
+Live measurements of the quantity of being forecast are the most important inputs to any forecasting system on very short lead-times. Their recency and locality cannot be matched by modelling due to latency and epistemic uncertainty introduced by modelling, except in the case where live measurements are corrupted. In general, methods based on live data outperform NWP-based forecasts for lead-times shorter than 2--10 hours, depending on the specific of the target variable and reference NWP. State-of-the-art forecasting systems will combine both approaches for optimal performance at all lead-times, and may also include live data from multiple neighbouring measurement locations for added benefit.
+
+In addition to live measurements of the forecast variable, operational data such as plant availability (e.g. proportion of turbines/PV panels in service) and control actions (e.g. curtailments) are also required as they change the nature of the power measurement. State-of-the-art forecasting systems will adapt to changing operational regimes and must be calibrated to predict the variable of interest to the user: what the actual power production is expected to be in the future, or, the the power production would be expected to be in the future if no control actions were in effect.  Forecasting systems must also be robust to missing data and able to either adapt to the loss of a live feed, or impute missing values.
+
+% Robustness of data feeds/communication/etc?
+
+% {\color{magenta}{Delays/latency in communications. Maybe a table of `issue|detail|impact'?}}
+
+{\color{magenta}{JB to make illustration/example figure here.}}
+
+\subsection{Specifics for producers of forecasts}
+\label{sec:live-data-producer}
+
+It is best practice for those who produce forecasts for internal use or to supply to  incorporate live data into their forecasting system for both continuous forecast verification (see Recommended Practice on Forecast Solution Selection) and production of very short-term forecasts. As discussed above, live data is a valuable input input to very short-term forecasting systems, and depending on the nature of forecast produce/service, may be necessary for post-processing to account for plant availability. Live data may also be included in forecast visualisation so that users may see recent history in the same figure as a forecast.
+
+
+\subsection{Specifics for consumers/users of forecasts} 
+\label{sec:liva-data-so}
+
+Consumers/users of forecasts should be aware of whether their forecast provider is using live data when producing forecasts, especially for very short-term lead-times. Some of the benefit of including live data may be realised by rudimentary methods, such as blending live data with forecasts or simply visualising recent observations alongside forecasts. However, to maximise forecast performance it is recommended to employ an forecasting system of provider that leverages live data.

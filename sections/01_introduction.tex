@@ -1,4 +1,4 @@
-\chapter{Background and Objectives {\color{magenta}{Contributing author: COM, JY}}} \label{ch:introduction}
+\chapter{Background and Objectives } \label{ch:introduction}
 %%\color{green} POST PUBLIC REVIEW VERSION \\ \color{black}
 
 \noindent
@@ -11,7 +11,8 @@ This part provides information and guidelines for the best practices of met meas
 }}
 \end{tcolorbox}
 \end{comment}
-
+{\color{red}{\textbf{Who is our target user and how do we address this user \\
+authority ? end-user ? ...?}}}
 
 \section{BEFORE YOU START READING}
 
@@ -23,30 +24,284 @@ The third part “Forecast Solution Evaluation”, which is the current document
 
 \section{Introduction {\color{magenta}{Contributing author: COM}}}
 
-Meteorological measurements provide an independent measure of the wind resource and weather situation at any given time. This information can and is, as technology enhances, not only an obligation that stems from technical requirements of the system operator, but is also used to optimise the operation of wind turbines by the wind farm operators.
-For both the system operator and the wind farm operator, these measurements are an independent signal at the wind farm that can warn about critical weather and provide an indication on whether the wind turbines work at their expected performance level. For the transmission system operator, such measurements can additionally be used for situational awareness of the weather in the control area that may affect the transmission lines. They also provide a second means of verification, whether the power signal at a given wind farm is malfunctioning in situations that may be critical in terms of grid operation.
+Meteorological measurements provide an independent measure of the wind and solar resource and weather situation at any given time. This information can and is, as technology enhances, not only an obligation that stems from technical requirements of the system operator, but is also used to optimise the operation of renewable power plants and electricity grids.
+For both the system operator and the power plant operator, these measurements are an independent signal at the power plant that can warn about critical weather and provide an indication on whether the power plants work at their expected performance level. For the transmission system operator, such measurements can additionally be used for situational awareness of the weather in the control area that may affect the transmission lines. They also provide a second means of verification, whether the power signal at a given power plant is malfunctioning in situations that may be critical in terms of grid operation.
 
-Data assimilation with independent measurements from wind farms have also been tested by meteorological centres (e.g. \cite{Marquis2012,EWELINE2011}). One of the most important findings so far is that the quality of data provided is the most essential issue to be solved in order to gain higher quality forecasts with such measurements. In other words, if there is no specific effort put into standardisation of requirements in the power industry, the benefits can not be achieved....
+Data assimilation with independent measurements from power plants have also been tested by meteorological centres (e.g. \cite{Marquis2012,EWELINE2011}). One of the most important findings so far is that the quality of data provided is the most essential issue to be solved in order to gain higher quality forecasts with such measurements. In other words, if there is no specific effort put into standardisation of requirements in the power industry, the benefits can not be achieved.
 
-This recommended practice (RP) is aimed to provide background information on meteorological instrumentation, their recommended setup, maintenance, quality control and use in the real-time environment of wind and solar power generation plants. The document also provides practical guidelines for quality control and recommended standards to be applied in the setup and operational phase of wind and solar projects for plant operators, system operators and power traders or balance responsible parties .... 
+This recommended practice (RP) is aimed to provide background information on meteorological instrumentation, their recommended setup, maintenance, quality control and use in the real-time environment of wind and solar power generation plants. Information on use of real-time power and other operational data in forecasting systems is also included.  The document provides practical guidelines for quality control and recommended standards to be applied in the setup and calibration of instrumentation  when entering the operational phase of wind and solar projects and for applications  relevant to plant operators, system operators, power traders or balance responsible parties. 
+
+%comment COM 28.06.2021: the below comments have been implemented today in the above paragraph, which may still need adjustment along the way.... 
+%{\color{blue}{Comment from SW (25.06.2021: Do we really also address “setup […] phase”?}}
+%{\color{green}{Commend COM (2021-06-27): It would be good to have the setup also discussed in a rudimentary way, i.e. are there differences in the conditions to what is covered by the available standards ? If we can refer to a standard as the recommended way of setting up instrumentation, that would be ideal. In both wind and solar, I'd assume that there is not much difference, where to setup the instruments on a e.g. met mast or within the power plant to retrieve undistrubed data...}}
+
+{\color{green}{Commend COM (2021-06-30): We need to incorporate the power measurements here also --- this is an outstanding task! }}
+
+\section{Use and Application of real-time Meteorological Measurements }
+{\color{magenta}{Contributing author: JY, JZ, COM}}
+
+In this section, we will define and discuss the use of meteorological measurements for real-time application and especially make the distinction to non-real-time use and applications such as resource assessment. 
 
 
-\section{Use and Application of {\color{blue}{(real-time ?)}} Measurements{\color{magenta}{Contributing author: JY, JZ}}}
-
-\subsection{Resource Assessment versus Forecasting Measurements}
+\subsection{Real-time applications vs. non-real time applications}
+% {\color{blue}{Comment from SW (25.06.2021: I think  “resource assessment” in the title was too general. This is also an issue in table 1.1 and other parts of the text. It could be understood  including all uses and time resolutions or as only referring to the assessments before the plant construction. Also plant control required real time operation. }}
 %This section discusses the differences between deploying and operating measurement systems for these two types of applications.
+The main difference between meteorological measurements used for non-real time applications such as resource assessments or periodic power plant monitoring and real-time applications such as forecasting, plant control and situational awareness is: 
+\begin{enumerate}
+    \item \textbf{Non-real time applications}\\
+    here the aim is to collect enough data in all known weather regimes to make a reliable prediction of the life-time yield of a power plant at a specific location or to allow the evaluation of its performance for time intervals such as days, months or years. Gaps and missing data are not as critical in the time series as long as the overall goal is achieved. Temporarily erroneous data reduces the overall quality of the result, but might not cause important errors, as long as most of the data are ok or as long as errors cancel out.
+    \item \textbf{Real-time Applications}\\
+    here the aim is to have reliable information about the current weather situation; gaps (missing data) are more critical as for these times, forecasts or plant control parameters cannot be generated or adapted with the help of measurements. Forecasts and other control options with lower quality must then be used. Temporarily erroneous data is more critical as the forecasts or plant control might lead to energetic and economic inefficiencies, system security issues etc.
+\end{enumerate}
+
+Therefore, the instrumentation and requirements for the signal quality is slightly different and needs to be taken into consideration. The following table defines the main differences:
+
+\begin{table}[h!]
+\begin{center}
+ \begin{tabular}{|| l l l ||}
+ \hline\hline
+  & & \\ 
+\textbf{Use} & \textbf{Non real-time Application} & \textbf{Real-time Application} \\ 
+ \hline \hline
+& \textbf{Wind Power related} & \\\hline \hline
+Yield & long-term trends & current weather \\
+Wake effects & no issue & important consideration \\
+... & & \\ \hline \hline
+& \textbf{Solar Power related} & \\ \hline \hline
+Shading & average over life-time & current clouds/obstacles\\ 
+Performance Loss Rates & module degradation & unavailability \\
+Transposition GHI -> GTI & climate dependent & calculation method \\
+... & & \\ \hline \hline
+& \textbf{General}  & \\ \hline \hline
+BIAS & near-zero required & not as critical \\
+Extreme events & enlarge data collection & critical \\
+Plant availability & n/a & important for forecasting \\
+Uncertainty & Calculation method & current weather related \\
+Temperature & average, min, max & current temperature\\
+... & & \\ \hline \hline
+\end{tabular}
+\caption{\textit{Differences between use of meteorological measurements for resource assessment and real-time applications}}
+\label{tab:qlimit}
+\end{center}
+\end{table}
+
+% {\color{blue}{Comment from SW (25.06.2021: the table should be discussed. E.g.:\\
+%Non real time is not only  for long term data series.\\
+%Shading must be known as time series, too\\
+%Loss rates for real time applications “unavailability” is most likely not enough }}
+
+%{\color{blue}{ ... Johns comments are implemented and outcommented below - but maybe we find even more to add ...? }}
+
+\iffalse
+{\color{blue}{I am not clear  on the significance/value to the user of some of the items in Table 1.1
+I was thinking that it would be more valuable to summarize the relative importance of
+specific measurement attributes.  Here are my initial thoughts:
+Measurement Attribute: Bias\\
+----------------------------\\
+Resource Assessment - near-zero bias in the measurement is critical since a small bias
+over a long period can significantly impact of the estimated energy yield of a  facility
+
+Forecasting:  Modest biases in measurements are not nearly as critical; ability to measure changes
+over short time periods is more essential
+
+Measurement Attribute: Measurement in Extreme Weather Conditions\\
+-----------------------------------------------------------------\\
+Resource Assessment: lost data during infrequent extreme weather conditions (e.g. high winds, icing etc.)
+is not critical because these represent a very small amount of the total energy production (in fact under
+such conditions there often may be no energy produced)
+
+Forecasting: Ability to measure data in extreme conditions is very important because the foreacsting
+of extreme weather shutdowns is critical for many operational purposes
+
+Measurement Attribute: Impact of Wakes\\
+---------------------------------------
+Resource Assessment:  measurements are typically made before project development so turbine wakes are not an issue
+
+Forecasting:  consideration of where the measurement is made relative to turbine locations is important
+since the wind measurement may be impacted by wakes for some wind direcrtions
+
+
+Measurement Attribute: Near Real-time availability of data\\
+----------------------------------------------------------\\
+Resource Assessment:  data does not typically need to be available in near real-time
+
+Forecasting:  near real-time availability is often critical for use in forecasting applications
+}}
+\fi
+
+
 \subsection{System Operation}
 
-\subsection{Power plant operation}
+The key applications in system operation, where real-time meteorological measurements are required are: 
+
+\begin{itemize}
+    \item \textbf{Situational awareness in critical weather events}\\
+    Critical weather events can cause severe security risks in grid operation. Forecasting and measurements assist to a large extend to make such events predictable and provide the necessary information to be able to act in advance. Such situational awareness is an important planning tool in grid operation, where penetration levels are above ca. 30\% of energy consumption.  Especially for wind generating power extreme winds can only be predicted by meteorological signals, due to the flattening of wind power curves in the wind ranges > ~12m/s. In this range, the power signal provides no local information to the system operator or the wind farm operator/balance responsible. 
+
+    \item \textbf{High-Speed Shutdown events}\\
+    During storm events, the critical parameter for the grid operation is the proportion of wind farms that are expected to enter into high-speed shutdown (HSSD) in any high penetration area. The risk and increased uncertainty for HSSD during storm events can result in the System Operator having to limit the wind generation in advance so that sufficient reserve is available.
+
+    \item \textbf{Grid related down-regulation or curtailments}\\
+    Grid related down-regulations or curtailments can be due to extreme weather events or technical problems at the electrical lines or controllers. Wind or solar radiation measurements can provide an independent signal to the system operator on the available active power potential, where this is not broadcasted and also provide the possibility to compute the lost power production due to the down/regulation. 
+\end{itemize}
+
+
+\subsection{Power plant operation {\color{blue}{Contributing author: IW/AC ?}}}
 
 \subsubsection{Wind plant operation}
+The key applications for wind plant operation, where real-time meteorological measurements are required are: 
+
+\begin{itemize}
+    \item \textbf{Wind turbine control}\\
+    Due to wake effects on nacelle anemometer, independent site data from a met mast or LIDAR can assist the turbine controller to work more safe and efficient. 
+    \item \textbf{Condition Monitoring}\\
+    
+    \item \textbf{Performance Evaluation and Optimisation}\\
+    AI for performance monitoring (AK, maybe with support form Enercon?) 
+    
+\end{itemize}
+
+\cite{Jing2020}
 
 \subsubsection{Solar/PV plant operation}
 
-\subsection{Power trading in electricity markets {\color{magenta}{Contributing author: ES}}}
+The key applications for solar plant operation, where real-time meteorological measurements are required are: 
 
-\section{Available {\color{blue}{(Applicable ?)}} Standards {\color{magenta}{Contributing author: COM}}}
+\begin{itemize}
+    \item improving yield forecasting for the next minutes, hours and days for
+        \begin{itemize}
+            \item ramp rate control in PV power plants
+            \item dispatch optimisation of power plans with storage
+            \item optimisation of power plant operation for thermal plants (e.g. start up decisions)
+        \end{itemize}
+    \item power plant control
+        \begin{itemize}
+            \item optimisation of tracking of tracked PV or concentrating collectors
+                \begin{itemize}
+                    \item stow position for high wind speeds/gusts
+                    \item optimal tracking angle for non concentrating tracked PV according to sky radiance distribution and shading
+                    \item de-focusing of concentrating collectors at high DNIs
+                \end{itemize}
+            \item mass flow control in thermal collectors
+            \item aim point control for solar tower plants
+        \end{itemize}
+\end{itemize}
 
-\subsection{Standards and Guidelines for Wind Measurements}
+Most of the real-time meteorological measurements are only required for large scale power plants. For tracking collectors of any size wind speed and direction measurements are required to allow for securing the collectors in the stow positions at high wind speeds. Depending on the solar thermal technology also further meteorological measurements may be required even for small systems. 
 
-\subsection{Standards and Guidelines for Solar/PV Measurements}
+In the handbook \cite{nrelhandbook2017} and \cite{nrelhandbook2021}, it is noted that measurements of irradiance are complex therefore more expensive as general meteorological instruments, especially for measuring direct normal irradiance (DNI). The applications named in \cite{nrelhandbook2017} and \cite{nrelhandbook2021} developers utilise for irradiance data are:
+
+\begin{itemize}
+    \item Site resource analysis
+     \item System design
+     \item Plant operation 
+     \item Developing, improving and testing models that use remote satellite sensing techniques or available surface meteorological observations
+    \item Developing, improving and testing solar resource forecasting techniques.
+\end{itemize}
+
+The handbook \citep{nrelhandbook2021} also mentions a priority regarding the selection process of instrumentation:
+\begin{enumerate}
+    \item \textbf{Accuracy requirements}:\\
+    Accuracy requirements need to be defined for the application/project and aligned with the associated levels of effort necessary to operate and maintain the measurement system on under these constraints. An overall cost-performance determination should be carried out to adapt the budget to the accuracy requirements and vice versa.
+    \item \textbf{Reliability requirements}:\\
+     Reliability can be achieved with redundant instrumentation and/or high quality instrumentation. Redundancy enhances and ensures confidence in data quality. Selection of multiple instruments need to be aligned with the accuracy needs. 
+\end{enumerate}
+
+
+
+
+\subsection{Power trading in electricity markets }
+{\color{magenta}{Contributing author: COM, JB}}
+
+The key applications for power trading and balancing, where real-time meteorological measurements are required are: 
+
+\begin{itemize}
+    \item \textbf{Short-term Forecasting using measurements}
+    \item \textbf{Intra-day Power plant balancing}
+    \item \textbf{Situational Awareness}
+    \item \textbf{Refund calculation in curtailment situations}
+\end{itemize}
+
+
+
+
+
+\section{Available applicable Standards }
+{\color{magenta}{Contributing author: COM}}{\color{blue}{ -- needs more attention}}
+
+\subsection{Standards and Guidelines for Wind Measurements}\label{subsec:wind_standards}
+
+For resource or site assessment in the planning phase of a wind farm an IEC standard exists [IEC, 2005] with an updated version 2 (IEC 61400-12-2:2013), that specifies which tests and what kind of criteria the instrumentation has to fulfil when used for the required tests to be carried out. The IEC 61400-12-2:2013 rules contain the following items:
+\begin{itemize}
+    \vspace{-0.2cm}\item Extreme winds
+    \vspace{-0.4cm}\item Shear of vertical wind profile
+    \vspace{-0.4cm}\item Flow inclination
+    \vspace{-0.4cm}\item Background turbulence
+    \vspace{-0.4cm}\item Wake turbulence
+    \vspace{-0.4cm}\item Wind-speed distribution
+\end{itemize}
+
+The results of these tests have to be within a pre-defined range to be acceptable. In Appendix F of the 61400-12-1:2005 "Cup anemometer calibration procedure" the calibration of the instruments for measuring wind are specified.
+
+The use of remote sensing for wind measurement was introduced in a new version 61400-12-1:2017. In Annex L guidelines for the classifications of remote sensing devices, for the verification of the performance and for the evaluation of uncertainties of the measurements are given. \\
+
+MEASNET (MEASuring NETwork), the "international network for harmonised and recognized measurements in wind energy" has defined so called "Round Robin rules" for calibration of cup anemometers for wind energy [MEASNET, 2009], which are widely used. MEASNET has also under the EU project ACCUWIND published a number of guidelines regarding instrument calibration and measurement campaigns for the wind industry (Dahlberg et al., 2006, Pedersen et al. 2006, Eecen, 2006]. Lee [2008] found a way of calibrating wind direction sensors with an optical camera.
+
+In 2016 MEASNET published Version 2.0 of a “Procedure for the evaluation of site-specific wind conditions” \cite{MEASNET2016}. This document gives guidance on measuring wind characteristics, and comprises  an  annex on wind measurement using remote sensing devices. It also includes guidance on how to set up measurement campaigns depending on the data required.
+
+IEA Wind Task 32 and Task 11 published recommended practices RP-15 for ground-based remote sensing for wind resource assessment in 2013 \cite{RP15}. It covers different aspects of using lidars and sodars. An updated review version of 2020 \cite{clifton_review_2020} identifies recommendations from the relevant normative documents (RP-15, MEASNET 2016, IEC 61400-12-1:2017 Annex L) concerning characterisation, installation, operation, data analysis and verification of wind lidar .
+
+The Annex D in IEC 61400-12-1:2005 standard states that the "implicit assumption of the method of this standard is that the 10 min mean power yield from a wind turbine is fully explained by the simultaneous 10 min mean wind speed measured at hub height, and the air density" [IEC, 2005, Annex D, Table D.1] and describes the associated measurement uncertainty evaluation principles.  In this respect, the standard refers to the "ISO Guide to the expression of Uncertainty in Measurements" \cite{jcgm2008,jcgm2009}, and its 2 supplements \cite{jcgm2008a,jcgm2011} from the Joint Committee for Guides in Meteorology (JCGM), where there are two types of measurement uncertainty that are to be accounted for in any standardised measurement taking: 
+\begin{enumerate}
+    \vspace{-0.2cm}\item systematic errors, often associated with offsets/bias of the measured quantity
+    \vspace{-0.4cm}\item random errors, which are associated with the fact that 2 measurements of the same quantity are seldom the same
+\end{enumerate}
+
+In section 3.1.2 of the guide, [\cite{jcgm2008a,jcgm2011} it is stated that "the result of a measurement .. is only an approximation or estimate .. of the value of the measurand and thus is complete only when accompanied by a statement of the uncertainty ... of that estimate". Considering this definition, all measurements should ideally have an uncertainty term associated with it. This is impractical in real-time operations, where the value of the measurements lies in the availability of the data at a given time. Therefore, it is unrealistic to request uncertainty measures. However, it could be a standing data value that is determined at the setup of the instrument and provided as part of the standing data. In that way, the instrument specific uncertainty could be accounted for in the handling of measurements (for other mitigation methods see \ref{subsec:nacelle_wind_speeds_in_nwp_data_assimilation}.\\ 
+
+In the introduction to the Guide \cite{jcgm2009}, it is stated that “..the principles of this Guide are intended to be applicable to a broad spectrum of measurements”, including those required for:
+\begin{itemize}
+   \item maintaining quality control and quality assurance in production
+   \item complying with and enforcing laws and regulations
+   \item calibrating standards and instruments and performing tests throughout a national 
+   \item measurement system in order to achieve tractability to national standards developing, maintaining, and comparing international and national physical reference standards, including reference materials 
+\end{itemize}
+
+To summarise, the handling and integration of wind power into the electric grid is an equally important step to harness the full potential of the energy resource in an efficient and environmentally friendly way. 
+
+This requires that measurements are trustworthy and maintained to a quality that allows for their use in forecasting tools in order to produce high quality forecasts and thereby reduce the need of reserves. These guides in combination with the IEC 61400-1 standard would provide a good foundation for any grid code technical requirement specifications. 
+
+
+\subsection{Standards and Guidelines for Solar Measurements}\label{subsec:solar_standards}
+A general guideline for meteorological measurements for solar energy is available in the IEA PVPS handbook \cite{nrelhandbook2021}. The handbook summarises important information for all steps of a solar energy project - reaching from required measurements and the design of measurement stations to forecasting the potential solar radiation. Measurement instruments and their application as well as other sources for solar measurement data are presented. The handbook links to relevant further standards and guidelines. Here we briefly summarise those standards and guidelines that are relevant for real-time applications. For resource assessment purposes, we refer to the IEA PVPS handbooks original Version \cite{nrelhandbook2015}, version 1\cite{nrelhandbook2017} and 2 \cite{nrelhandbook2021}.
+
+One of the frequently cited guidelines for measuring radiation is chapter 7 of the WMO CIMO guide \cite{wmoguide2018}. There, guidelines are presented for meteorological measurements in general which mostly apply also for solar energy related measurements. However, some guidelines are different for solar energy as the conditions relevant for the power systems must be measured. For example, these conditions are often affected by nearby objects such as the solar collectors themselves, trees or buildings which should be avoided for other meteorological measurements.
+
+In the ISO 9060 standard radiometers are classified according to their measurement errors caused by different effects, such as sensor temperature, or calibration stability. Classes are defined for both pyranometers (used to measure global radiation of the hemisphere above the sensor) and pyrheliometers (used to measure the direct normal irradiance). There are several ISO and ASTM standards for the radiometer calibration (ISO, 9059, ISO 9847, ISO 9846, ASTM G207, ASTM824, ASTM167).  Guidelines for the application of pyranometers can be found in ISO 9901 and guidelines for the application of pyranometers and pyrheliometers are found in ASTM 183.
+
+IEC 61724 on PV system performance monitoring describes how radiometers and other meteorological instruments should be integrated and used in PV plants. Accuracy classes of the resulting monitoring systems are defined. Also the number of sensors depending on the peak power of the PV system is given. Additionally, the standard defines cleaning and calibration intervals for pyranometers.
+
+
+\section{Standards and Guidelines for general meteorological measurements}\label{sec:met_standards}
+
+As mentioned in section \ref{subsec:wind_standards} and \ref{subsec:solar_standards}, the \textit{Guide to Instruments and Methods of Observation} from the WMO (world meteorolgy organisation) \cite{wmoguide2018} is standardising  instrumentation for surface winds in chapter 5 and for radiation in chapter 7. Other meteorological parameters covered in the WMO Guide are measurement of:
+\begin{itemize}
+    \item Surface and upper air temperature (\cite{wmoguide2018} in chapter 2 and 10)
+    \item Atmospheric and upper air pressure (\cite{wmoguide2018} in chapter 3 and 10)
+    \item Surface and upper-air Humidity (\cite{wmoguide2018} in chapter 4 and 10)
+    \item Surface and upper air wind (\cite{wmoguide2018} in chapter 5 and 13)
+    \item Sunshine Duration ((\cite{wmoguide2018} in chapter 6)
+    \item Visibility (\cite{wmoguide2018} in chapter 8)
+    \item Evaporation (\cite{wmoguide2018} in chapter 9)
+    \item Clouds ((\cite{wmoguide2018} in chapter 15)
+    \item Atmospheric Compisitions (\cite{wmoguide2018} in chapter 16)
+\end{itemize}
+
+The United States Environmental Protection Agency (EPA) provides a “Meteorological Monitoring Guidance for Regulatory modelling Applications” \cite{EPA2000}, which is a guideline on the collection of meteorological data for use in regulatory modelling applications such as air quality. It provides recommendations for  instrument, measurement and reporting for all main meteorological variables used in meteorological modelling. In Section 4 of the guideline, the EPA provides recommended system accuracies and resolutions for especially wind speed, wind direction, ambient and dew point temperatures, humidity, pressure and precipitation, which are useful for wind and solar applications as well and will be discussed in the measurement setup and calibration section \ref{ch:measurements}.  
+
+These guidelines and recommendations have been assessed for the purpose of wind and/or solar projects and have been basis for a number of our best practice recommendations in section \ref{ch:bestpractice}. 
+
+
+\section{Data Communication Aspects }
+
+{\color{magenta}{Contributing author: COM, JB, RP, JL}}{\color{blue}{ -- needs to be decided, whether we should have any of that here or refer to RP1 ?!}}
